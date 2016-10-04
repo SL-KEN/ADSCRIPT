@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script uses a HERE document to display Hello world!
+#Lab 1 Script 2
 
 cat <<EOF
 Hello World!

@@ -1,4 +1,4 @@
 #!/bin/bash
-# This script is for Step 1 of lab 1, the helloworld script
+# Lab 1 Script 1 
 
 echo "Hello World!"

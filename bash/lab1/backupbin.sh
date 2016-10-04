@@ -1,4 +1,4 @@
 #!/bin/bash
-# This script backs up my personal bin to my personal backups directory
+# Lab 1  Script 4
 
 rsync -av ~/bin/ ~/backups
