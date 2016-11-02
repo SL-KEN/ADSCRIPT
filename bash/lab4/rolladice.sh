@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#Lab 3 Script 2
+#Lab 4 Script 1
+#Roll A DICE - allows user to roll virtual dice and get the sum of the rolls
 
 count=0 
 sides=0
@@ -8,8 +9,9 @@ sides=0
 while [ $# -gt 0 ]; do 
  	case "$1" in
   	-h )
-
- 	echo "Usage: $0 [-h] [-c numberofdice] [-s 4-20]" 
+cat <<EOF
+ 	Usage: $0 [-h] [-c numberofdice] [-s 4-20]
+EOF
  	exit  0
  	;;
 
@@ -19,7 +21,11 @@ while [ $# -gt 0 ]; do
 	count =$2
  	shift  
        else 
-   	echo "You gave me '$2' as the number of dice to roll" >&2
+
+cat <<EOF
+   	You gave me '$2' as the number of dice to roll 
+EOF
+         >&2
   	exit 1
   	
       fi
@@ -29,9 +35,11 @@ while [ $# -gt 0 ]; do
 	if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then 
 	if [ $2 -lt 4 -o $2 -gt 20]; then
  
-	   echo "Number of sides must be between 4 and 20, .." >&2
+ 
+
+	  echo "Number of sides must be between 4 and 20, .."   >&2
         exit 1 
- 	else 
+ else 
 	sides=$2
 	shift
      fi 
@@ -60,7 +68,7 @@ done
 until [[ $sides =~ ^[1-9][0-9]*$ ]]; do
   read -p "How many sides should each die have[4-20]? " sides
   if [ "$sides" -lt 4 -o "$sides" -gt 20 ]; then
-    echo "$sides must be from 4 to 20 inclusive" >&2
+    echo "$sides isn't allowed, the sides must be between 4 to 20" >&2
     sides=0
   fi
 done

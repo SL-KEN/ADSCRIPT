@@ -15,8 +15,6 @@ ips[1]=`ifconfig ${interfacenames[1]} | grep 'inet addr' |
 
 gatewayip=`route -n|grep '^0.0.0.0 '|awk '{print $2}'`
 
-cat <<EOF
-Interface ${interfacenames[0]} has address ${ips[0]}
+echo "Interface ${interfacenames[0]} has address ${ips[0]}
 Interface ${interfacenames[1]} has address ${ips[1]}
-My default gateway is $gatewayip
-EOF
+My default gateway is $gatewayip"
