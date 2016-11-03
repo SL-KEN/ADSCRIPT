@@ -9,7 +9,7 @@ filestoshow=3
 function usage {
     
     echo "usage: $0 [-h|--help [c|--count numberoffilestodisplay] [directorytoworkon]"
-    echo "count defaults to 3, directory defauts ~/Pictures"
+    echo "count defaults to 3, Directory defauts ~/Pictures"
     
 }
 
@@ -28,28 +28,28 @@ while [ $# -gt 0]; do
      ;;
 
 -c | --count )
-if [[$2 =~ ^[1-9][0-9]*$]]; then 
-filestoshow=$2 
+if [[ $2 =~ ^[1-9][0-9]*$ ]]; then 
+    filestoshow=$2 
 shift
-else 
-usage 
-error-message "Count requires a number"
-exit 1 
+    else 
+    usage 
+    error-message "Count requires a number"
+    exit 1 
 fi
 ;;
 
 if [ $gotadirectory = "no" ]; then 
-directory=$1 
-gotadirectory="yes"
+    directory=$1 
+    gotadirectory="yes"
 else
-usage 
-error-message "I didn't understand '$1' as a directory, I already have a directory $directory"
+    usage 
+    error-message "I didn't understand '$1' as a directory, I already have a directory $directory"
 exit 1 
 fi
 ;;
 
-esac 
-shift 
+    esac 
+    shift 
 done
 
 echo -n "In the ~/Pictures directory, the number of files is "

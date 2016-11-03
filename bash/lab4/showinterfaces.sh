@@ -2,8 +2,6 @@
 #lab 2 script 5
 
 
-
-
 interfacenames=(`ifconfig |grep '^[a-zA-Z]'|awk '{print $1}'`)
 
 declare -a ips
@@ -14,6 +12,12 @@ ips[1]=`ifconfig ${interfacenames[1]} | grep 'inet addr' |
                                      sed -e 's/  *inet addr://'| sed -e 's/ .*//'`
 
 gatewayip=`route -n|grep '^0.0.0.0 '|awk '{print $2}'`
+
+
+
+
+
+
 
 cat <<EOF
 Interface ${interfacenames[0]} has address ${ips[0]}

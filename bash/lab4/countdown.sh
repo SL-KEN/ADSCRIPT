@@ -10,9 +10,9 @@ trap interrupt INT
 
 function quit {
     
-    echo"quitting"
+    echo "quitting"
     
-exit 1    
+resetcounter=$counter    
     
 }
 
@@ -20,7 +20,7 @@ function interrupt {
     
     echo "resetting"
     
-    resetcounter
+   - resetcounter=$counter
 }
 
 
