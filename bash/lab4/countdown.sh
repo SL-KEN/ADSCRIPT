@@ -12,7 +12,7 @@ function quit {
     
     echo "quitting"
     
-resetcounter=$counter    
+     
     
 }
 
@@ -20,7 +20,7 @@ function interrupt {
     
     echo "resetting"
     
-   - resetcounter=$counter
+   
 }
 
 

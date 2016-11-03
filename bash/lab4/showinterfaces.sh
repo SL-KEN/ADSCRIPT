@@ -4,7 +4,63 @@
 
 interfacenames=(`ifconfig |grep '^[a-zA-Z]'|awk '{print $1}'`)
 
-declare -a ips
+defaultroute=0
+
+declare -A ips
+
+declare -a int 
+
+declare -a interface
+
+
+help_function() {
+    
+    
+    echo "shows IP stuff or something"
+    
+    
+}
+
+
+error-message () {
+	
+	echo "error message $filename: $1 " >&2
+echo "use -h or --help option to get help"
+
+
+}
+
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+    -h| --help )
+        help_function
+        exit 0
+        ;;
+        
+    -r|--route )
+        defaultroute=1 
+        shift
+        
+        ;;
+        
+*)
+
+
+  if [ $? -eq 0 ]; then
+        
+                int+=("$1") 
+        else 
+                exit 1
+        fi
+                
+    ;;
+        
+    esac
+    shift 
+done
+
+
 ips[0]=`ifconfig ${interfacenames[0]} | grep 'inet addr' |
                                      sed -e 's/  *inet addr://'| sed -e 's/ .*//'`
                                      
