@@ -79,6 +79,8 @@ die1=$(($RANDOM %6 +1))
 die2=$(($RANDOM %6 +1)) 
 rolled=$(($die1 + $die2))
 
+
 echo "Rolled $die1,$die2 for $rolled"
+
 
 done

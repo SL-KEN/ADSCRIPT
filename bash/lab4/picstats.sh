@@ -2,67 +2,62 @@
 
 
 
-
-
-#variables 
 directory=~/Pictures
-numberoffilestoshow=3 
+filestoshow=3
 
-#functions
 
-function usage { 
-    echo "Usage: $0 [-h --help] [c --count numberofilestodisplay] [directory to work on]"
-    echo "Count defaults to 3. Directort defaults to ~/Pictures"
+function usage {
+    
+    echo "usage: $0 [-h|--help [c|--count numberoffilestodisplay] [directorytoworkon]"
+    echo "count defaults to 3, directory defauts ~/Pictures"
+    
 }
 
-function error-message 
-#echo 
+function error-message {
+    
+    echo "$@" >82 
+}
 
-#command line processing
+gotadirectory=no 
 
-gotadirectory=no
+while [ $# -gt 0]; do
+    case "$1" in 
+    -h | --help ) 
+     usage 
+     exit 0 
+     ;;
 
+-c | --count )
+if [[$2 =~ ^[1-9][0-9]*$]]; then 
+filestoshow=$2 
+shift
+else 
+usage 
+error-message "Count requires a number"
+exit 1 
+fi
+;;
 
-while [ $# -gt 0 ]; do
-    case "$1" in
-        -h | --help ) #show usage diagram
-        usage
-        exit 0 
-            ;; 
-        -c | --count ) #how big files are to display
-        if [[ $2 =~ ^[1=9][0-9]*$]] then 
-            count=$2
-            shift
-            else
-            usage
-            error-message "Count requires a number"
-            exit 1
-            fi
-            ;; 
-        esac    
-        
-        * ) # directory name
-        
-        if [ $gotadirectory ="no" ] then 
-            directory=$1 
-            gotadirectory="yes"
-        else 
-         usage 
-         error-message "I didn't understand '$1' as a directory, I all ready had a directory $directory"
-         exit 1 
-         
-        fi
-        ;;
-   esac
-   shift
-done 
+if [ $gotadirectory = "no" ]; then 
+directory=$1 
+gotadirectory="yes"
+else
+usage 
+error-message "I didn't understand '$1' as a directory, I already have a directory $directory"
+exit 1 
+fi
+;;
+
+esac 
+shift 
+done
 
 echo -n "In the ~/Pictures directory, the number of files is "
-find $directory -type f |wc -l
+find ~/Pictures -type f |wc -l
 
 echo -n "Those files use "
-du -h $directory |awk '{print $1}'
+du -h ~/Pictures |awk '{print $1}'
 
 echo "The 3 largest files are:"
 echo "========================"
-du -h $directory/* |sort -h |tail -3
+du -h ~/Pictures/* |sort -h |tail -3
